@@ -14,6 +14,6 @@
 
   @Component
   export default class App extends Vue {
-    @State("todos") myTodos: Todo[]
+    @State(state => state.todos) myTodos: Todo[]
   }
 </script>
