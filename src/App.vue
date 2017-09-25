@@ -9,14 +9,15 @@
       <li v-for="done in dones"> {{done.text}} </li>
     </ul>
 
-    <p><input type="text" v-model="newTodo.text" @keyup.enter="addTodo(newTodo)"></p>
+    <p>Add todo:<input type="text" v-model="newTodo.text" @keyup.enter="addTodo(newTodo)"></p>
+    <p>Get todo from server:<input type="text" v-model="id" @keyup.enter="addTodoAsync(id)"></p>
   </div>
 </template>
 
 <script lang="ts">
   import Vue from 'vue';
   import { Component } from "vue-property-decorator";
-  import { Getter, Mutation } from 'vuex-class';
+  import { Getter, Mutation, Action } from 'vuex-class';
   import { Todo } from './types';
 
   @Component
@@ -27,6 +28,8 @@
       text:'',
       checked: false
     }
-  @Mutation addTodo
+  @Mutation addTodo;
+  @Action addTodoAsync;
+  id: string = "1";
   }
 </script>
