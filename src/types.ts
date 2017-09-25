@@ -8,6 +8,7 @@ export interface TodoState {
 }
 
 export interface RootState {
+  count: number;
   todos: TodoState;
   login: LoginState;
 }

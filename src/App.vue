@@ -33,8 +33,6 @@
 
   const LoginMutation = namespace('login', Mutation);
 
-
-
   @Component
   export default class App extends Vue {
     @TodoGetter todos: Todo[];

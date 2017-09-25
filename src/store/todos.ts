@@ -27,7 +27,7 @@ export const mutations: MutationTree<TodoState> = {
 };
 
 export const actions: ActionTree<TodoState, RootState> = {
-  addTodoAsync({ commit, rootState }, id) {
+  addTodoAsync({ commit, dispatch, rootState }, id) {
     fetch("https://jsonplaceholder.typicode.com/posts/" + id)
       .then(data => data.json())
       .then(item => {
@@ -36,7 +36,9 @@ export const actions: ActionTree<TodoState, RootState> = {
           text: rootState.login.user + ": " + item.title
         };
         commit("addTodo", todo);
-        commit("setChecked", todo);
+        commit("sum", null, { root: true });
+        // commit("login/login", null, { root: true });
+        // dispatch("login/login", null, { root: true });
       });
   }
 };
