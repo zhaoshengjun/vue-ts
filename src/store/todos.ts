@@ -1,5 +1,5 @@
 import { State } from "../types";
-import { GetterTree } from "vuex";
+import { GetterTree, MutationTree } from "vuex";
 
 export const state: State = {
   todos: [
@@ -12,4 +12,11 @@ export const state: State = {
 export const getters: GetterTree<State, any> = {
   todos: state => state.todos.filter(t => !t.checked),
   dones: state => state.todos.filter(t => t.checked)
+};
+
+export const mutations: MutationTree<State> = {
+  addTodo(state, newTodo) {
+    const copy = Object.assign({}, newTodo);
+    state.todos.push(copy);
+  }
 };
