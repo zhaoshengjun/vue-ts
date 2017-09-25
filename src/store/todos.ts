@@ -1,7 +1,7 @@
-import { State, Todo } from "../types";
+import { TodoState, Todo } from "../types";
 import { GetterTree, MutationTree, ActionTree } from "vuex";
 
-export const state: State = {
+export const state: TodoState = {
   todos: [
     { text: "Buy Milk", checked: false },
     { text: "Go shopping", checked: true },
@@ -9,12 +9,12 @@ export const state: State = {
   ]
 };
 
-export const getters: GetterTree<State, any> = {
+export const getters: GetterTree<TodoState, any> = {
   todos: state => state.todos.filter(t => !t.checked),
   dones: state => state.todos.filter(t => t.checked)
 };
 
-export const mutations: MutationTree<State> = {
+export const mutations: MutationTree<TodoState> = {
   addTodo(state, newTodo) {
     const copy = Object.assign({}, newTodo);
     state.todos.push(copy);
@@ -24,7 +24,7 @@ export const mutations: MutationTree<State> = {
   }
 };
 
-export const actions: ActionTree<State, any> = {
+export const actions: ActionTree<TodoState, any> = {
   addTodoAsync({ commit }, id) {
     fetch("https://jsonplaceholder.typicode.com/posts/" + id)
       .then(data => data.json())
@@ -37,4 +37,11 @@ export const actions: ActionTree<State, any> = {
         commit("setChecked", todo);
       });
   }
+};
+
+export const todos = {
+  state,
+  getters,
+  mutations,
+  actions
 };
