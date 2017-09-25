@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <ul>
-      <li v-for="todo in todos"> {{todo.text}} </li>
+      <li v-for="todo in myTodos"> {{todo.text}} </li>
     </ul>
   </div>
 </template>
@@ -14,6 +14,6 @@
 
   @Component
   export default class App extends Vue {
-    @State todos: Todo[]
+    @State("todos") myTodos: Todo[]
   }
 </script>
