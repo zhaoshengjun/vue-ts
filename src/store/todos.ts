@@ -1,5 +1,5 @@
 import { TodoState, Todo, RootState } from "../types";
-import { GetterTree, MutationTree, ActionTree } from "vuex";
+import { GetterTree, MutationTree, ActionTree, Module } from "vuex";
 
 type TodoGetter = GetterTree<TodoState, RootState>;
 
@@ -33,7 +33,7 @@ export const actions: ActionTree<TodoState, RootState> = {
       .then(item => {
         const todo: Todo = {
           checked: false,
-          text: rootState.login.user + " " + item.title
+          text: rootState.login.user + ": " + item.title
         };
         commit("addTodo", todo);
         commit("setChecked", todo);
@@ -41,9 +41,10 @@ export const actions: ActionTree<TodoState, RootState> = {
   }
 };
 
-export const todos = {
+export const todos: Module<TodoState, RootState> = {
   state,
   getters,
   mutations,
-  actions
+  actions,
+  namespaced: true
 };

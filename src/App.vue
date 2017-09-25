@@ -24,24 +24,32 @@
 <script lang="ts">
   import Vue from 'vue';
   import { Component } from "vue-property-decorator";
-  import {State, Getter, Mutation, Action } from 'vuex-class';
+  import {State, Getter, Mutation, Action, namespace } from 'vuex-class';
   import { Todo, LoginState } from './types';
+
+  const TodoGetter = namespace('todos', Getter);
+  const TodoMutation = namespace('todos', Mutation);
+  const TodoAction = namespace('todos', Action);
+
+  const LoginMutation = namespace('login', Mutation);
+
+
 
   @Component
   export default class App extends Vue {
-    @Getter todos: Todo[];
-    @Getter dones: Todo[];
+    @TodoGetter todos: Todo[];
+    @TodoGetter dones: Todo[];     // store.gettters['dones']   ==> store.getters['todos.dones]
     @State login: LoginState;
     newTodo:Todo = {
       text:'',
       checked: false
     }
-  @Mutation addTodo;
-  @Mutation toggleTodo;
-  @Action addTodoAsync;
+  @TodoMutation addTodo;
+  @TodoMutation toggleTodo;
+  @TodoAction addTodoAsync;
   id: string = "1";
 
-  @Mutation('login') loginMutation;
+  @LoginMutation('login') loginMutation;
   }
 </script>
 
