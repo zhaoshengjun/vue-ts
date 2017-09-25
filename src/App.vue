@@ -1,7 +1,12 @@
 <template>
   <div id="app">
+    <h4>Todos</h4>
     <ul>
-      <li v-for="todo in myTodos"> {{todo.text}} </li>
+      <li v-for="todo in todos"> {{todo.text}} </li>
+    </ul>
+    <h4>Done</h4>
+    <ul>
+      <li v-for="done in dones"> {{done.text}} </li>
     </ul>
   </div>
 </template>
@@ -9,11 +14,12 @@
 <script lang="ts">
   import Vue from 'vue';
   import { Component } from "vue-property-decorator";
-  import { State } from 'vuex-class';
+  import { Getter } from 'vuex-class';
   import { Todo } from './types';
 
   @Component
   export default class App extends Vue {
-    @State(state => state.todos) myTodos: Todo[]
+    @Getter todos: Todo[];
+    @Getter dones: Todo[];
   }
 </script>
