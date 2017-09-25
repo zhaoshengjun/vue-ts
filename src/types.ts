@@ -13,6 +13,7 @@ export interface RootState {
   count: number;
   todos: TodoState;
   login: LoginState;
+  history: HistoryState;
 }
 
 export interface LoginState {
@@ -22,4 +23,8 @@ export interface LoginState {
 
 export interface HistoryState {
   history: MutationPayload[];
+}
+
+export interface PluginOptions {
+  persist?: boolean;
 }
