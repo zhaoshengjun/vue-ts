@@ -19,7 +19,9 @@ export const mutations: MutationTree<State> = {
     const copy = Object.assign({}, newTodo);
     state.todos.push(copy);
   },
-  setChecked(state, todo) {}
+  toggleTodo(state, todo) {
+    todo.checked = !todo.checked;
+  }
 };
 
 export const actions: ActionTree<State, any> = {
