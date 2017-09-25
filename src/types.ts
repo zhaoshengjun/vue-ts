@@ -1,3 +1,5 @@
+import { MutationPayload } from "vuex";
+
 export interface Todo {
   text: string;
   checked: boolean;
@@ -16,4 +18,8 @@ export interface RootState {
 export interface LoginState {
   user: string;
   isLoggedIn: boolean;
+}
+
+export interface HistoryState {
+  history: MutationPayload[];
 }
